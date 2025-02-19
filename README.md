@@ -2,6 +2,8 @@
 
 This repository contains the NetNote application, developed as part of the CSE project. NetNote is a distributed note-taking application designed to run in a client-server architecture, enabling seamless note organization, collaboration, and synchronization.
 
+![NetNote](https://github.com/user-attachments/assets/72dd9618-38a6-4cdc-8f42-12827c9a506e)
+
 ---
 
 ## Getting Started
