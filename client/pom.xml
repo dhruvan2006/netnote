@@ -14,6 +14,7 @@
 		<version.mockito>5.13.0</version.mockito>
 		<version.jersey>3.1.9</version.jersey>
 		<version.jfx>23.0.1</version.jfx>
+		<jpro.version>2025.1.0</jpro.version>
 	</properties>
 
 	<dependencies>
@@ -148,6 +149,13 @@
             <scope>test</scope>
         </dependency>
 
+		<!-- JPro WebAPI Dependency -->
+		<dependency>
+			<groupId>one.jpro</groupId>
+			<artifactId>jpro-webapi</artifactId>
+			<version>${jpro.version}</version>
+			<scope>compile</scope>
+		</dependency>
     </dependencies>
 
 	<build>
@@ -195,6 +203,31 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- JPro Maven Plugin -->
+			<plugin>
+				<groupId>one.jpro</groupId>
+				<artifactId>jpro-maven-plugin</artifactId>
+				<version>${jpro.version}</version>
+				<configuration>
+					<mainClassName>client.Main</mainClassName>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+
+	<!-- JPro plugin repository -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jpro-sandec-repo</id>
+			<url>https://sandec.jfrog.io/artifactory/repo</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<!-- JPro artifact repository -->
+	<repositories>
+		<repository>
+			<id>jpro-sandec-repo</id>
+			<url>https://sandec.jfrog.io/artifactory/repo</url>
+		</repository>
+	</repositories>
 </project>

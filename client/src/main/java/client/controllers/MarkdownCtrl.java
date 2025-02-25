@@ -9,12 +9,12 @@ import client.utils.Config;
 import com.google.inject.Inject;
 import commons.Note;
 import javafx.animation.PauseTransition;
-import javafx.application.Platform;
+//import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
+//import javafx.scene.web.WebEngine;
+//import javafx.scene.web.WebView;
 import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
@@ -52,7 +52,7 @@ public class MarkdownCtrl {
     // UI references
     private ListView<Note> collectionView;
     private TreeView<Note> treeView;
-    private WebView markdownView;
+//    private WebView markdownView;
     private Label markdownViewBlocker;
     private TextArea noteBody;
 
@@ -105,15 +105,13 @@ public class MarkdownCtrl {
     /**
      * Sets UI component references and initializes markdown rendering.
      */
-    public void setReferences(ListView<Note> collectionView, TreeView<Note> treeView, WebView markdownView,
-                              Label markdownViewBlocker, TextArea noteBody) {
+    public void setReferences(ListView<Note> collectionView, TreeView<Note> treeView, Label markdownViewBlocker, TextArea noteBody) {
         this.collectionView = collectionView;
         this.treeView = treeView;
-        this.markdownView = markdownView;
         this.markdownViewBlocker = markdownViewBlocker;
         this.noteBody = noteBody;
 
-        this.markdownView.getEngine().setJavaScriptEnabled(true);
+//        this.markdownView.getEngine().setJavaScriptEnabled(true);
 
         // Initialize the WebView
         updateMarkdownView("");
@@ -130,48 +128,48 @@ public class MarkdownCtrl {
         noteBody.scrollTopProperty().addListener((_, _, _) -> synchronizeScroll());
 
         // Pass internationalized strings to JS
-        WebEngine webEngine = markdownView.getEngine();
-        webEngine.documentProperty().addListener((obs, oldDoc, newDoc) -> {
-            if (newDoc != null) {
-                String collectionLabel = bundle.getString("collection.text");
-                String noteLabel = bundle.getString("note.text");
-                String previewLabel = bundle.getString("preview.text");
-
-                webEngine.executeScript(
-                        "window.localizedStrings = {" +
-                                "   collectionLabel: '" + escapeJsString(collectionLabel) + "'," +
-                                "   noteLabel: '" + escapeJsString(noteLabel) + "'," +
-                                "   previewLabel: '" + escapeJsString(previewLabel) + "'" +
-                                "};"
-                );
-            }
-        });
+//        WebEngine webEngine = markdownView.getEngine();
+//        webEngine.documentProperty().addListener((obs, oldDoc, newDoc) -> {
+//            if (newDoc != null) {
+//                String collectionLabel = bundle.getString("collection.text");
+//                String noteLabel = bundle.getString("note.text");
+//                String previewLabel = bundle.getString("preview.text");
+//
+//                webEngine.executeScript(
+//                        "window.localizedStrings = {" +
+//                                "   collectionLabel: '" + escapeJsString(collectionLabel) + "'," +
+//                                "   noteLabel: '" + escapeJsString(noteLabel) + "'," +
+//                                "   previewLabel: '" + escapeJsString(previewLabel) + "'" +
+//                                "};"
+//                );
+//            }
+//        });
 
         // Handle javascript alerts from the WebView
-        markdownView.getEngine().setOnAlert(event -> {
-            String url = event.getData();
-
-            if (url.startsWith("tag://")) {
-                // Handle tag clicks
-                String tag = url.substring("tag://".length());
-                dashboardCtrl.selectTag(tag);
-            } else if (url.startsWith("note://")) {
-                // Handle internal note links
-                String noteTitle = url.substring("note://".length());
-                dashboardCtrl.getCollectionNotes().stream()
-                        .filter(note -> note.title.equals(noteTitle))
-                        .findFirst()
-                        .ifPresent(selectedNote -> {
-                            collectionView.getSelectionModel().clearSelection();
-                            collectionView.getSelectionModel().select(selectedNote);
-                            treeView.getSelectionModel().clearSelection();
-                            dashboardCtrl.selectNoteInTreeView(selectedNote);
-                        });
-            } else {
-                // Handle external urls
-                openUrlInBrowser(url);
-            }
-        });
+//        markdownView.getEngine().setOnAlert(event -> {
+//            String url = event.getData();
+//
+//            if (url.startsWith("tag://")) {
+//                // Handle tag clicks
+//                String tag = url.substring("tag://".length());
+//                dashboardCtrl.selectTag(tag);
+//            } else if (url.startsWith("note://")) {
+//                // Handle internal note links
+//                String noteTitle = url.substring("note://".length());
+//                dashboardCtrl.getCollectionNotes().stream()
+//                        .filter(note -> note.title.equals(noteTitle))
+//                        .findFirst()
+//                        .ifPresent(selectedNote -> {
+//                            collectionView.getSelectionModel().clearSelection();
+//                            collectionView.getSelectionModel().select(selectedNote);
+//                            treeView.getSelectionModel().clearSelection();
+//                            dashboardCtrl.selectNoteInTreeView(selectedNote);
+//                        });
+//            } else {
+//                // Handle external urls
+//                openUrlInBrowser(url);
+//            }
+//        });
     }
 
     private String escapeJsString(String input) {
@@ -191,10 +189,10 @@ public class MarkdownCtrl {
         validatedContent = referenceService.validateAndReplaceReferences(validatedContent);
         String renderedHtml = convertMarkdownToHtml(validatedContent);
 
-        Platform.runLater(() -> {
-            markdownView.getEngine().loadContent(renderedHtml, "text/html");
-            markdownViewBlocker.setVisible(markdown == null || markdown.isEmpty());
-        });
+//        Platform.runLater(() -> {
+//            markdownView.getEngine().loadContent(renderedHtml, "text/html");
+//            markdownViewBlocker.setVisible(markdown == null || markdown.isEmpty());
+//        });
     }
 
     /**
@@ -204,7 +202,7 @@ public class MarkdownCtrl {
         markdown = convertFileNameToURL(markdown);
         String htmlContent = markdown == null || markdown.isEmpty() ? "" : renderer.render(parser.parse(markdown));
 
-        markdownView.getEngine().setUserStyleSheetLocation(getClass().getResource("/css/markdown.css").toExternalForm());
+//        markdownView.getEngine().setUserStyleSheetLocation(getClass().getResource("/css/markdown.css").toExternalForm());
 
         return """
                 <!DOCTYPE html>
@@ -263,9 +261,9 @@ public class MarkdownCtrl {
      */
     private void synchronizeScroll() {
         double percentage = computeScrollPercentage(noteBody);
-        Platform.runLater(() -> markdownView.getEngine().executeScript(
-                "document.body.scrollTop = document.body.scrollHeight * " + percentage + ";"
-        ));
+//        Platform.runLater(() -> markdownView.getEngine().executeScript(
+//                "document.body.scrollTop = document.body.scrollHeight * " + percentage + ";"
+//        ));
     }
 
     private double computeScrollPercentage(TextArea noteBody) {

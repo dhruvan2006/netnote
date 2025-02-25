@@ -37,7 +37,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.web.WebView;
+//import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import lombok.Getter;
@@ -79,7 +79,7 @@ public class DashboardCtrl implements Initializable {
     @FXML private VBox root;
     @FXML private Label contentBlocker;
     @FXML @Getter private TextArea noteBody;
-    @FXML private WebView markdownView;
+//    @FXML private WebView markdownView;
     @FXML private Label markdownViewBlocker;
     @FXML @Getter private Label noteTitle;
     @FXML @Getter public ListView collectionView;
@@ -193,7 +193,7 @@ public class DashboardCtrl implements Initializable {
 
         allNotes = FXCollections.observableArrayList(server.getAllNotes());
         collectionNotes = allNotes;
-        markdownCtrl.setReferences(collectionView, allNotesView, markdownView, markdownViewBlocker, noteBody);
+        markdownCtrl.setReferences(collectionView, allNotesView, markdownViewBlocker, noteBody);
         markdownCtrl.setDashboardCtrl(this);
         searchCtrl.setReferences(this, searchField);
         searchField.setOnKeyPressed(event -> {
@@ -226,7 +226,6 @@ public class DashboardCtrl implements Initializable {
                 noteTitle,
                 noteTitleMD,
                 noteBody,
-                markdownView,
                 contentBlocker,
                 searchField,
                 filesViewBlocker,

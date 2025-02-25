@@ -12,7 +12,7 @@ import commons.Note;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
-import javafx.scene.web.WebView;
+//import javafx.scene.web.WebView;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,7 +35,7 @@ public class NoteCtrl {
     private Label noteTitle;
     private Label noteTitleMd;
     private TextArea noteBody;
-    private WebView markdownView;
+//    private WebView markdownView;
     private Label contentBlocker;
     private TextField searchField;
     private Label filesViewBlocker;
@@ -71,7 +71,6 @@ public class NoteCtrl {
             Label noteTitle,
             Label noteTitleMd,
             TextArea noteBody,
-            WebView markdownView,
             Label contentBlocker,
             TextField searchField,
             Label filesViewBlocker,
@@ -82,7 +81,6 @@ public class NoteCtrl {
         this.noteTitle = noteTitle;
         this.noteTitleMd = noteTitleMd;
         this.noteBody = noteBody;
-        this.markdownView = markdownView;
         this.contentBlocker = contentBlocker;
         this.searchField = searchField;
         this.filesViewBlocker = filesViewBlocker;
@@ -188,7 +186,7 @@ public class NoteCtrl {
             noteTitleMd.setText(selectedNote.title);
             noteTitleMd.setTextOverrun(javafx.scene.control.OverrunStyle.ELLIPSIS);
             // Again, here, when the trash icons are removed, we can remove the subtract, or make it like 5px
-            noteTitleMd.maxWidthProperty().bind(markdownView.widthProperty().subtract(40));
+//            noteTitleMd.maxWidthProperty().bind(markdownView.widthProperty().subtract(40));
 
             noteBody.setText(selectedNote.body);
             contentBlocker.setVisible(false);

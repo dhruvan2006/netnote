@@ -6,7 +6,7 @@ import client.utils.Config;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
-import javafx.scene.web.WebView;
+//import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class HelpMenuCtrl implements Initializable {
 
     @FXML private HBox menuBar;
     private double dragStartX, dragStartY;
-    @FXML private WebView webView;
+//    @FXML private WebView webView;
     private Stage stage;
 
     private Config config;
@@ -60,10 +60,10 @@ public class HelpMenuCtrl implements Initializable {
             String htmlContent = markdownCtrl.convertMarkdownToHtml(markdownContent);
 
             // Load the HTML into the WebView
-            webView.getEngine().loadContent(htmlContent);
+//            webView.getEngine().loadContent(htmlContent);
         } catch (IOException e) {
             e.printStackTrace();
-            webView.getEngine().loadContent("<h1>Error</h1><p>Unable to load the README file.</p>");
+//            webView.getEngine().loadContent("<h1>Error</h1><p>Unable to load the README file.</p>");
         }
     }
 

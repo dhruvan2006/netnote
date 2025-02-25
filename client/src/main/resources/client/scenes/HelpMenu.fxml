@@ -40,6 +40,6 @@
             <String fx:value="popup-hbox" />
          </styleClass>
       </HBox>
-      <WebView fx:id="webView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+<!--      <WebView fx:id="webView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />-->
    </children>
 </VBox>

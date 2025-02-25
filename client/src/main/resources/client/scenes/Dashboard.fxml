@@ -233,7 +233,7 @@
                                                       <Color red="0.624" green="0.624" blue="0.624" fx:id="x21" />
                                                   </textFill>
                                               </Label>
-                                              <WebView fx:id="markdownView" prefHeight="571.0" prefWidth="441.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="43.0" />
+<!--                                              <WebView fx:id="markdownView" prefHeight="571.0" prefWidth="441.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="43.0" />-->
                                               <Label fx:id="markdownViewBlocker" alignment="CENTER" text="%noRenderedMarkdown.text" textAlignment="CENTER" textFill="#7e7e7e" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <font>
                                                       <Font name="System Italic" size="12.0" />
